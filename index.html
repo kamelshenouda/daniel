@@ -307,7 +307,8 @@ html.lock{overflow:hidden}
 [dir="rtl"] .seg-d.cur i::after{transform-origin:right}
 .cine-ctl{position:relative;display:flex;gap:10px;justify-content:center;align-items:center;padding:0 24px 30px}
 .cine-ctl button[disabled]{opacity:.35;cursor:default}
-.seg-d.cur i::after{animation:fillx 6.5s linear forwards}
+.seg-d.cur i::after{animation:fillx var(--dur,14s) linear forwards}
+.cine.hold .seg-d.cur i::after{animation-play-state:paused}
 .cine.paused .seg-d.cur i::after{animation-play-state:paused}
 @keyframes fillx{to{transform:scaleX(1)}}
 @keyframes tick{to{opacity:1}}
@@ -328,7 +329,7 @@ html.lock{overflow:hidden}
   .t1-comet{animation:pulse 2.6s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:.75}50%{opacity:1}}
 }
-@media (prefers-reduced-motion:reduce){.w>span{transform:none;animation:none}.seg-d.cur i::after{animation-duration:9s}}
+@media (prefers-reduced-motion:reduce){.w>span{transform:none;animation:none}}
 @media (max-width:640px){
   .t1-nav{width:38px;height:38px;margin-top:-19px}
   .t1-nav.prev{inset-inline-start:8px}.t1-nav.next{inset-inline-end:8px}
@@ -1500,6 +1501,9 @@ function cineShow(i){
   $("#cine-track").innerHTML=MM.map((q,k)=>`<button class="seg-d ${k<ci?"done":k===ci?"cur":""} ${q.ch?"d":""}" data-ci="${k}" aria-label="${esc(q.title)}"><i></i></button>`).join("");
   cine.classList.toggle("paused",cPaused);
   const cur=cine.querySelector(".seg-d.cur i");
+  /* time on each slide follows how much there is to read: about 2.5 words a second after the title finishes revealing, never under 14s */
+  const words=(m.title+" "+m.hook).split(/\s+/).length+m.refs.length*2;
+  cur.style.setProperty("--dur",Math.max(14,Math.min(26,4+words/2.5)).toFixed(1)+"s");
   cur.addEventListener("animationend",()=>{if(ci<MM.length-1)cineShow(ci+1);else{cPaused=true;cineLabels();cine.classList.add("paused");}},{once:true});
   $("#cine-open").onclick=()=>openRead(ci);
   $("#cine-prev").disabled=ci===0;$("#cine-next").disabled=ci===MM.length-1;
@@ -1596,7 +1600,7 @@ function verses(code){
   return h;
 }
 function showV(a){
-  clearTimeout(vHide);vFor=a;
+  clearTimeout(vHide);vFor=a;if(cineOn)cine.classList.add("hold");
   const avd=!!a.dataset.avd,code=a.dataset.avd||a.dataset.nlt,r=ref(code);
   vpop.className="vpop "+(avd?"avd":"nlt");
   vpop.innerHTML=avd
@@ -1610,7 +1614,7 @@ function showV(a){
   vpop.style.left=left+"px";vpop.style.top=top+"px";
   requestAnimationFrame(()=>vpop.classList.add("in"));
 }
-function hideV(now){clearTimeout(vHide);vHide=setTimeout(()=>{vFor=null;vpop.classList.remove("in");vpop.style.display="none";},now?0:220);}
+function hideV(now){clearTimeout(vHide);vHide=setTimeout(()=>{cine.classList.remove("hold");vFor=null;vpop.classList.remove("in");vpop.style.display="none";},now?0:220);}
 const isV=t=>t&&t.closest&&t.closest("[data-avd],[data-nlt]");
 document.addEventListener("pointerover",e=>{if(e.pointerType==="touch")return;const a=isV(e.target);if(a&&a!==vFor)showV(a);else if(a||e.target.closest&&e.target.closest(".vpop"))clearTimeout(vHide);});
 document.addEventListener("pointerout",e=>{if(e.pointerType==="touch")return;const from=isV(e.target)||(e.target.closest&&e.target.closest(".vpop"));if(!from)return;const to=e.relatedTarget;if(to&&(to===vFor||(vFor&&vFor.contains(to))||to.closest&&to.closest(".vpop")))return;hideV();});
