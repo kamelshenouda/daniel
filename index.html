@@ -388,7 +388,10 @@ html.lock{overflow:hidden}
 .acc{font-weight:600}
 .acc3{color:var(--accent)}.acc2{color:var(--sub)}.acc1{color:#FF8A8A}
 :root .acc1{color:#d6363c}[data-theme="dark"] .acc1{color:#FF8A8A}
-.t1-card .agec,.t2-card .agec{margin-inline-start:6px}
+.tagrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.tagrow .chip,.tagrow .agec{line-height:1.2;height:22px;display:inline-flex;align-items:center;box-sizing:border-box}
+.meta .agec,.cine-chip .agec{height:22px}
+.t1-card h3{margin-top:10px}
 .cine-chip .agec{font-size:12px;padding:5px 11px}
 .ro-yr{position:relative}
 .ro-age{margin-inline-start:auto;align-self:center;font-style:normal;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;color:var(--sub);-webkit-text-fill-color:var(--sub);white-space:nowrap}
@@ -1058,7 +1061,7 @@ function riverHTML(){
   GG.forEach(g=>{const i=MM.findIndex(m=>m.g===g.id);h+=`<div class="t1-era label" style="inset-inline-start:${40+i*NW}px">${g.title}</div>`;});
   MM.forEach((m,i)=>{
     h+=`<div class="t1-node ${i%2?"dn":"up"} ${m.ch?"d":""}" id="n-${m.id}" style="inset-inline-start:${40+i*NW}px">
-      <button class="t1-card" data-sel="${m.id}">${chip(m)}${ageChip(m)}<h3>${esc(m.title)}</h3></button>
+      <button class="t1-card" data-sel="${m.id}"><span class="tagrow">${chip(m)}${ageChip(m)}</span><h3>${esc(m.title)}</h3></button>
       <div class="t1-stem"></div><div class="t1-dot"></div><div class="t1-yr">${yr(m)}</div></div>`;
   });
   return `<div class="t1-in" style="width:${MM.length*NW+80}px">${h}</div>`;
@@ -1086,7 +1089,7 @@ function descentHTML(){
     const items=MM.filter(m=>m.g===g.id);
     return `<div class="t2-era"><span class="label">${U.part} ${gi+1}</span><h3>${g.title.replace(g.hl,`<span class="grad">${g.hl}</span>`)}</h3><p>${g.sub}</p></div>
     <div class="t2-list"><span class="t2-fill"></span>${items.map(m=>`<div class="t2-row pre ${m.ch?"d":""}" id="r-${m.id}"><span class="t2-dot"></span>
-      <button class="t2-card" data-desc="${m.id}" aria-expanded="false">${chip(m)}${ageChip(m)}<h4>${esc(m.title)}</h4><p>${esc(m.hook)}</p><span class="more">${U.openStory}</span></button>
+      <button class="t2-card" data-desc="${m.id}" aria-expanded="false"><span class="tagrow">${chip(m)}${ageChip(m)}</span><h4>${esc(m.title)}</h4><p>${esc(m.hook)}</p><span class="more">${U.openStory}</span></button>
       <div class="t2-yr">${yr(m)}</div></div>`).join("")}</div>`;
   }).join("")+`</div>`;
 }
