@@ -40,7 +40,7 @@ h1{font-family:Sora,sans-serif;font-weight:600;font-size:48px;line-height:1.1;ma
 
 /* toolbar */
 .bar{position:sticky;top:0;z-index:5;background:var(--bar);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.bar .wrap{display:flex;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap;max-width:none;padding-inline:clamp(20px,4vw,72px)}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
 .seg button{font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;padding:7px 16px;border-radius:999px;color:var(--muted)}
 .seg button[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-ink)}
@@ -111,7 +111,7 @@ footer p{margin:0 0 8px;max-width:700px}
 .grad{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* map of reigns */
 .t3-scroll{overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}
-.t3{position:relative;min-width:980px;padding:8px 0 0}
+.t3{position:relative;min-width:720px;padding:8px 0 0}
 .t3-emp{position:relative;height:30px;margin-inline-start:110px}
 .t3-emp div{position:absolute;top:0;bottom:0;border-inline-start:1px solid var(--line);padding-inline-start:10px;display:flex;align-items:center}
 .t3-row{display:grid;grid-template-columns:110px 1fr;align-items:center;height:46px}
@@ -198,7 +198,9 @@ footer p{margin:0 0 8px;max-width:700px}
 
 /* ===== map hero ===== */
 .hero2{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:44px 0 30px}
-.hero2 .wide{position:relative}
+.hero2 .wide{position:relative;max-width:none;padding:0 clamp(20px,4vw,72px)}
+.hero2 .h2-top{grid-template-columns:1fr minmax(300px,360px)}
+.hero2 .lead{max-width:680px}
 .h2-top{display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:end;margin-bottom:26px}
 .hero2 h1{margin:10px 0 10px}
 .hero2 .lead{font-size:17px;max-width:560px}
@@ -231,11 +233,11 @@ footer p{margin:0 0 8px;max-width:700px}
 .t3{cursor:crosshair}
 .t3 button{cursor:pointer}
 @media (prefers-reduced-motion:no-preference){
-  .t3.intro .kbar{transform-origin:left;animation:kgrow .7s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--d)}
-  [dir="rtl"] .t3.intro .kbar,[dir="rtl"] .t3.intro .life{transform-origin:right}
-  .t3.intro .life{transform-origin:left;animation:kgrow 1.25s linear both;animation-delay:820ms}
-  .t3.intro .mk,.t3.intro .ev{animation:pop .45s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--d)}
-  .t3.intro .t3-emp div,.t3.intro .t3-axis{animation:rise .6s cubic-bezier(.22,1,.36,1) both}
+  .t3.t3in .kbar{transform-origin:left;animation:kgrow .7s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--d)}
+  [dir="rtl"] .t3.t3in .kbar,[dir="rtl"] .t3.t3in .life{transform-origin:right}
+  .t3.t3in .life{transform-origin:left;animation:kgrow 1.25s linear both;animation-delay:820ms}
+  .t3.t3in .mk,.t3.t3in .ev{animation:pop .45s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--d)}
+  .t3.t3in .t3-emp div,.t3.t3in .t3-axis{animation:rise .6s cubic-bezier(.22,1,.36,1) both}
   @keyframes kgrow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
   @keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
   .life{animation:breathe 4s ease-in-out 2.4s infinite}
@@ -1256,7 +1258,7 @@ function render(){
     $("#content").innerHTML=`<section class="hero2">${$("#rib").innerHTML}<div class="wide">
       <div class="h2-top"><div><span class="label rise">${U.heroLabel}</span><h1>${introDone?U.h1:U.h1.split(" ").map((w,i)=>`<span class="w"><span style="--i:${i}">${w}</span></span>`).join(" ")}</h1><p class="lead rise" style="animation-delay:.18s">${U.lead}</p></div>
         <div class="readout rise" style="animation-delay:.27s" id="ro" aria-live="off"></div></div>
-      <div class="t3-scroll"><div class="t3 ${introDone?"":"intro"}" id="t3">${mapHTML()}</div></div>
+      <div class="t3-scroll"><div class="t3 ${introDone?"":"t3in"}" id="t3">${mapHTML()}</div></div>
       <div id="thr">${threadBar()}</div>
       <div class="lay"><button class="play" id="play"><span aria-hidden="true">▶</span> ${U.play}</button><p class="hint">${U.mapSub}</p></div>
       <div class="lay lay2"><span class="label">${U.style}</span><div class="seg" role="group" aria-label="${U.style}"><button id="l-river" aria-pressed="${layout==="river"}">${U.river}</button><button id="l-descent" aria-pressed="${layout==="descent"}">${U.descent}</button></div></div></div></section>`+
