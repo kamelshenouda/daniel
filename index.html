@@ -379,6 +379,22 @@ html.lock{overflow:hidden}
   .thd{animation:thpop .5s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--d)}
   @keyframes thpop{from{transform:rotate(45deg) scale(0)}to{transform:rotate(45deg) scale(1)}}
 }
+
+/* ===== Daniel's age ===== */
+.agec{display:inline-flex;align-items:center;gap:6px;font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;line-height:1;padding:4px 9px;border-radius:999px;border:1px dashed color-mix(in srgb,var(--accent) 55%,transparent);color:var(--ink);cursor:help;white-space:nowrap;vertical-align:middle}
+.agec b{font-family:Sora,sans-serif;font-weight:600;font-size:12px}
+.agec i{font-style:normal;color:var(--muted)}
+.agec.off{color:var(--muted);border-color:var(--line)}
+.acc{font-weight:600}
+.acc3{color:var(--accent)}.acc2{color:var(--sub)}.acc1{color:#FF8A8A}
+:root .acc1{color:#d6363c}[data-theme="dark"] .acc1{color:#FF8A8A}
+.t1-card .agec,.t2-card .agec{margin-inline-start:6px}
+.cine-chip .agec{font-size:12px;padding:5px 11px}
+.ro-yr{position:relative}
+.ro-age{margin-inline-start:auto;align-self:center;font-style:normal;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;color:var(--sub);-webkit-text-fill-color:var(--sub);white-space:nowrap}
+.ro-age b{font-family:Sora,sans-serif;font-size:18px;color:var(--ink);-webkit-text-fill-color:var(--ink)}
+.tip{max-width:340px}
+[lang="ar"] .agec,[lang="ar"] .ro-age{font-family:Cairo,sans-serif;font-weight:700}
 /* tooltips */
 :root{--tipbg:rgba(255,255,255,.97)}
 [data-theme="dark"]{--tipbg:rgba(26,26,29,.97)}
@@ -814,6 +830,22 @@ AR.m={"hezekiah":{"date":"حوالي 701 ق.م","title":"حزقيا بيفتح �
 Object.assign(AR.ui,{threadsL:"خيوط عبر الأسفار",threadOff:"ولا حاجة",threadRow:"الخيط",openMs:"افتح المحطة دي",
  avdHead:"فاندايك (AVD)",avdFoot:"دوس على لينك AVD عشان تقرا النص ده على Bible.com.",readOn:"اقرا على Bible.com ↗",
  nltHead:"الترجمة الإنجليزية (NLT)",nltBody:"نص الـ NLT عليه حقوق نشر، فمش معروض جوه الصفحة.",nltFoot:"دوس على لينك NLT عشان تقرا النص ده على Bible.com.",
+ ageL:a=>`دانيال ≈ ${a}`,accL:p=>`دقة ${p}%`,ageBefore:"قبل ميلاد دانيال",ageBorn:"دانيال اتولد حوالي 620 ق.م",
+ ageTipT:"إزاي بنقدّر عمر دانيال",ageRange:(a,lo,hi,p)=>`حوالي ${a} · غالبًا بين ${lo} و${hi} · دقة ${p}%`,
+ ageTipP:(b,u,e)=>`الكتاب المقدس ما بيذكرش عمره. نقطة البداية: حوالي سنة 605 ق.م، دانيال 1: 4 بيعدّه من «الفتيان» اللي اتختاروا للتدريب؛ واحنا بنفترض إن عمره كان حوالي 15 (أغلب التقديرات من 13 لـ 17، يعني ±2 سنة). تاريخ المحطة دي: ${b} (±${u} ${u===1?"سنة":"سنين"}). العمر = 15 + (605 − السنة). الدقة = 100% ناقص الخطأ المحتمل (±${e} سنين) كنسبة من عمره.`,
+ ageBornP:"الكتاب المقدس ما بيذكرش عمره. دانيال 1: 4 بيعدّه من «الفتيان» اللي اتسبوا حوالي سنة 605 ق.م؛ ولو كان عنده حوالي 15 ساعتها، يبقى اتولد حوالي 620 ق.م، أيام حكم يوشيا.",
+ ageBeforeP:"المحطة دي حصلت قبل ما دانيال يتولد. الكتاب المقدس ما بيذكرش سنة ميلاده؛ ولو كان عنده حوالي 15 سنة 605 ق.م، يبقى اتولد حوالي 620 ق.م.",
+ dateBasis:{hist:"سنة 609 ق.م، السنة اللي يوشيا مات فيها في مجدّو (ملوك الثاني 23: 29)",jer46:"السنة الرابعة ليهوياقيم، لما بابل انتصرت في كركميش (إرميا 46: 2)، حوالي 605 ق.م",
+  d1:"السنة التالتة ليهوياقيم (دانيال 1: 1)، حوالي 605 ق.م، ومعاها لحد تلات سنين تدريب",d2:"السنة التانية لنبوخذنصر (دانيال 2: 1)، حوالي 603 ق.م",
+  k24:"آخر سنين يهوياقيم، قبل 598 ق.م (ملوك الثاني 24: 1)",k24b:"السنة التامنة لنبوخذنصر (ملوك الثاني 24: 12)، 597 ق.م",
+  ex:"السنة الخامسة لسبي يهوياكين (حزقيال 1: 2) ورسالة إرميا، بين 597 و591 ق.م",
+  d3:"مش مذكور. دانيال 3 متحط بعد دانيال 2 جوه حكم نبوخذنصر (605–562 ق.م)، فممكن يبقى قبلها أو بعدها بعشر سنين",
+  k25:"السنة الحداشر لصدقيا، والتسعتاشر لنبوخذنصر (ملوك الثاني 25: 2، 8)، 586 ق.م",
+  d4:"مش مذكور. افتخار الملك ببابل اللي بناها (دانيال 4: 30) بيشاور على آخر حكمه، قبل 562 ق.م",
+  k25b:"السنة السبعة وتلاتين لسبي يهوياكين (ملوك الثاني 25: 27)، حوالي 561 ق.م",d7:"السنة الأولى لبيلشاصر (دانيال 7: 1)، حوالي 553 ق.م",
+  d8:"السنة التالتة لبيلشاصر (دانيال 8: 1)، حوالي 551 ق.م",d5:"الليلة اللي بابل وقعت فيها في إيد مادي وفارس (دانيال 5: 30–31)، 539 ق.م",
+  d9:"السنة الأولى لداريوس المادي (دانيال 9: 1)، حوالي 539–538 ق.م",d6:"حكم داريوس المادي، بعد سقوط بابل على طول (دانيال 6: 1، 28)، حوالي 538 ق.م",
+  ez1:"السنة الأولى لكورش (عزرا 1: 1)، حوالي 538 ق.م",d10:"السنة التالتة لكورش (دانيال 10: 1)، حوالي 536 ق.م"},
  chMs:n=>n+" محطات"});
 
 /* ---------- rendering ---------- */
@@ -858,6 +890,22 @@ const EN={
  avdHead:"Van Dyke (AVD)",avdFoot:"Click the AVD link to read this passage on Bible.com.",readOn:"Read on Bible.com ↗",
  nltHead:"New Living Translation (NLT)",nltBody:"The NLT text is copyrighted, so it isn’t shown inside this page.",nltFoot:"Click the NLT link to read this passage on Bible.com.",
  chMs:n=>n+" milestones",
+ ageL:a=>`Daniel ≈ ${a}`,accL:p=>`${p}% accuracy`,ageBefore:"Before Daniel’s birth",ageBorn:"Daniel born ≈ 620 BC",
+ ageTipT:"How we estimate Daniel’s age",ageRange:(a,lo,hi,p)=>`About ${a} · likely ${lo}–${hi} · ${p}% accuracy`,
+ ageTipP:(b,u,e)=>`Scripture never states his age. Starting point: in about 605 BC, Daniel 1:4 counts him among the “young men” chosen for training; we take about 15 (most estimates 13–17, so ±2 years). Date of this milestone: ${b} (±${u} ${u===1?"year":"years"}). Age = 15 + (605 − year). Accuracy = 100% minus the possible error (±${e} years) as a share of his age.`,
+ ageBornP:"Scripture never states his age. Daniel 1:4 counts him among the “young men” taken in about 605 BC; at about 15 then, he would have been born around 620 BC, during Josiah’s reign.",
+ ageBeforeP:"This milestone happens before Daniel was born. Scripture gives no birth year; at about 15 in 605 BC, he would have been born around 620 BC.",
+ dateBasis:{hist:"609 BC, the year Josiah died at Megiddo (2 Kings 23:29)",jer46:"the fourth year of Jehoiakim, when Babylon won at Carchemish (Jeremiah 46:2), about 605 BC",
+  d1:"the third year of Jehoiakim (Daniel 1:1), about 605 BC, with up to three years of training after it",d2:"the second year of Nebuchadnezzar (Daniel 2:1), about 603 BC",
+  k24:"Jehoiakim’s last years, before 598 BC (2 Kings 24:1)",k24b:"the eighth year of Nebuchadnezzar (2 Kings 24:12), 597 BC",
+  ex:"the fifth year of Jehoiachin’s exile (Ezekiel 1:2) and Jeremiah’s letter, between 597 and 591 BC",
+  d3:"none given. Daniel 3 is placed after Daniel 2 within Nebuchadnezzar’s reign (605–562 BC), so it could be a decade either way",
+  k25:"the eleventh year of Zedekiah, Nebuchadnezzar’s nineteenth (2 Kings 25:2, 8), 586 BC",
+  d4:"none given. The king’s boast over the Babylon he built (Daniel 4:30) suggests late in his reign, before 562 BC",
+  k25b:"the thirty-seventh year of Jehoiachin’s exile (2 Kings 25:27), about 561 BC",d7:"the first year of Belshazzar (Daniel 7:1), about 553 BC",
+  d8:"the third year of Belshazzar (Daniel 8:1), about 551 BC",d5:"the night Babylon fell to the Medes and Persians (Daniel 5:30–31), 539 BC",
+  d9:"the first year of Darius the Mede (Daniel 9:1), about 539–538 BC",d6:"the reign of Darius the Mede, just after Babylon fell (Daniel 6:1, 28), about 538 BC",
+  ez1:"the first year of Cyrus (Ezra 1:1), about 538 BC",d10:"the third year of Cyrus (Daniel 10:1), about 536 BC"},
  kings:null,books:BOOKS,
  foot:[
   ["How to read this page.","Every story bullet restates what the Scripture text says. Each scene carries its verses, with links that open the passage in the New Living Translation (NLT) and the Arabic Van Dyke (AVD)."],
@@ -896,6 +944,28 @@ let view="timeline";
 const open=new Set();
 const Y=Object.fromEntries(M.map(m=>[m.id,m.y]));
 let thread=null;
+/* Daniel's age: about 15 in 605 BC (Daniel 1:4 "young men"), so born about 620 BC. Date uncertainty per milestone (± years) and its basis. */
+const DATEU={jehoiakim:[0,"hist"],year605:[0,"jer46"],jehoiakim598:[1,"k24"],jehoiachin597:[0,"k24b"],exile597:[3,"ex"],fall586:[0,"k25"],jehoiachin:[1,"k25b"],cyrus:[1,"ez1"]};
+const CHU={1:[1,"d1"],2:[1,"d2"],3:[10,"d3"],4:[8,"d4"],5:[0,"d5"],6:[1,"d6"],7:[1,"d7"],8:[1,"d8"],9:[1,"d9"],10:[1,"d10"],11:[1,"d10"],12:[1,"d10"]};
+function age(m){
+  const y=m.id==="year605"?605:Y[m.id];
+  if(m.id==="josiah")return {born:true};
+  if(y>620)return {before:true};
+  const [u,b]=m.ch?CHU[m.ch]:DATEU[m.id],a=Math.round(620-y),e=2+u;
+  return {a,u,b,e,lo:Math.max(0,a-e),hi:a+e,p:Math.max(0,Math.round(100*(1-e/a)))};
+}
+function ageChip(m){
+  const g=age(m);
+  if(g.before)return `<span class="agec off" data-age="${m.id}" tabindex="0">${U.ageBefore}</span>`;
+  if(g.born)return `<span class="agec" data-age="${m.id}" tabindex="0">${U.ageBorn}</span>`;
+  return `<span class="agec" data-age="${m.id}" tabindex="0">${U.ageL(`<b dir="ltr">${g.a}</b>`)}<i>·</i><span class="acc acc${g.p>=90?3:g.p>=75?2:1}">${U.accL(g.p)}</span></span>`;
+}
+function ageTip(id){
+  const m=byId(id),g=age(m);
+  if(g.before)return [U.ageTipT,U.ageBefore,U.ageBeforeP];
+  if(g.born)return [U.ageTipT,U.ageBorn,U.ageBornP];
+  return [U.ageTipT,U.ageRange(g.a,g.lo,g.hi,g.p),U.ageTipP(U.dateBasis[g.b],g.u,g.e)];
+}
 const byId=id=>MM.find(m=>m.id===id);
 const yr=m=>`<span dir="ltr">${m.yrL}</span><small>${U.bc}</small>`;
 const chip=m=>`<span class="chip ${m.ch?"d":""}">${m.tagL}</span>`;
@@ -913,7 +983,9 @@ function readout(y){
   if(y==null){m=byId(sel);y=Y[sel];label=m.yrL;}
   else{label=String(Math.round(y));const done=MM.filter(q=>Y[q.id]>=y-.5&&q.ch!==3&&q.ch!==4);m=done[done.length-1];}
   const rows=[["J",U.roJ],["B",U.roB],["P",U.roP]].map(([k,l])=>{const k2=REIGNS[k].find(q=>q[0]>=y&&y>q[1]);return k2?`<div><span>${l}</span>${kname(k2[2])}</div>`:"";}).join("");
-  ro.innerHTML=`<div class="ro-yr grad"><span dir="ltr">${label}</span><small>${U.bc}</small></div><div class="ro-k">${rows}</div>`+
+  const ay=Math.round(620-(y==null?Y[sel]:y));
+  ro.innerHTML=`<div class="ro-yr grad"><span dir="ltr">${label}</span><small>${U.bc}</small><em class="ro-age">${ay>0?U.ageL(`<b dir="ltr">${ay}</b>`):U.ageBefore}</em></div>`;
+  ro.innerHTML+=`<div class="ro-k">${rows}</div>`+
     `<div class="ro-m" style="${m?"":"visibility:hidden"}"><span class="label">${U.latest}</span>${m?chip(m):'<span class="chip">·</span>'}<b>${m?esc(m.title):"·"}</b></div>`;
 }
 function setCur(p){
@@ -986,7 +1058,7 @@ function riverHTML(){
   GG.forEach(g=>{const i=MM.findIndex(m=>m.g===g.id);h+=`<div class="t1-era label" style="inset-inline-start:${40+i*NW}px">${g.title}</div>`;});
   MM.forEach((m,i)=>{
     h+=`<div class="t1-node ${i%2?"dn":"up"} ${m.ch?"d":""}" id="n-${m.id}" style="inset-inline-start:${40+i*NW}px">
-      <button class="t1-card" data-sel="${m.id}">${chip(m)}<h3>${esc(m.title)}</h3></button>
+      <button class="t1-card" data-sel="${m.id}">${chip(m)}${ageChip(m)}<h3>${esc(m.title)}</h3></button>
       <div class="t1-stem"></div><div class="t1-dot"></div><div class="t1-yr">${yr(m)}</div></div>`;
   });
   return `<div class="t1-in" style="width:${MM.length*NW+80}px">${h}</div>`;
@@ -1002,7 +1074,7 @@ function storyHTML(){
   const m=byId(sel),i=ORDER.indexOf(sel),p=MM[i-1],n=MM[i+1],a=isAr();
   return `<div class="card rise">
     <div class="story-head"><div class="story-yr ${m.ch?"grad":""}">${yr(m)}</div>
-      <div><span class="meta">${chip(m)}<span class="date">${m.date}</span></span><h3>${esc(m.title)}</h3><p class="hook">${esc(m.hook)}</p></div></div>
+      <div><span class="meta">${chip(m)}<span class="date">${m.date}</span>${ageChip(m)}</span><h3>${esc(m.title)}</h3><p class="hook">${esc(m.hook)}</p></div></div>
     <div class="sbody">${body(m)}</div></div>
    <div class="story-nav">
     <button class="ghost" ${p?`data-sel="${p.id}"`:"disabled"}>${a?"→":"←"} ${p?esc(p.tagL):U.start}</button>
@@ -1014,7 +1086,7 @@ function descentHTML(){
     const items=MM.filter(m=>m.g===g.id);
     return `<div class="t2-era"><span class="label">${U.part} ${gi+1}</span><h3>${g.title.replace(g.hl,`<span class="grad">${g.hl}</span>`)}</h3><p>${g.sub}</p></div>
     <div class="t2-list"><span class="t2-fill"></span>${items.map(m=>`<div class="t2-row pre ${m.ch?"d":""}" id="r-${m.id}"><span class="t2-dot"></span>
-      <button class="t2-card" data-desc="${m.id}" aria-expanded="false">${chip(m)}<h4>${esc(m.title)}</h4><p>${esc(m.hook)}</p><span class="more">${U.openStory}</span></button>
+      <button class="t2-card" data-desc="${m.id}" aria-expanded="false">${chip(m)}${ageChip(m)}<h4>${esc(m.title)}</h4><p>${esc(m.hook)}</p><span class="more">${U.openStory}</span></button>
       <div class="t2-yr">${yr(m)}</div></div>`).join("")}</div>`;
   }).join("")+`</div>`;
 }
@@ -1075,7 +1147,7 @@ function card(m,n){
       <button class="head" aria-expanded="${open.has(m.id)}" data-id="${m.id}">
         <span class="n num" dir="ltr">${n}</span>
         <span>
-          <span class="meta">${chip(m)}<span class="date">${m.date}</span></span>
+          <span class="meta">${chip(m)}<span class="date">${m.date}</span>${ageChip(m)}</span>
           <h3>${esc(m.title)}</h3>
           <p class="hook">${esc(m.hook)}</p>
         </span>
@@ -1208,7 +1280,7 @@ $("#theme").onclick=()=>{
 const tipEl=document.createElement("div");tipEl.className="tip";tipEl.setAttribute("role","tooltip");document.body.appendChild(tipEl);
 let tipFor=null;
 function showTip(el){
-  const t=TIPS[el.dataset.tip];if(!t)return;
+  const t=el.dataset.age?ageTip(el.dataset.age):TIPS[el.dataset.tip];if(!t)return;
   tipFor=el;
   tipEl.innerHTML=`<b>${esc(t[0])}</b><span>${esc(t[1])}</span><p>${esc(t[2])}</p>`;
   tipEl.style.display="block";
@@ -1218,11 +1290,11 @@ function showTip(el){
   tipEl.style.left=left+"px";tipEl.style.top=top+"px";
 }
 function hideTip(){tipFor=null;tipEl.style.display="none";}
-document.addEventListener("mouseover",e=>{const el=e.target.closest("[data-tip]");if(el)showTip(el);});
-document.addEventListener("mouseout",e=>{const el=e.target.closest("[data-tip]");if(el&&!el.contains(e.relatedTarget))hideTip();});
-document.addEventListener("focusin",e=>{const el=e.target.closest("[data-tip]");if(el)showTip(el);});
+document.addEventListener("mouseover",e=>{const el=e.target.closest("[data-tip],[data-age]");if(el)showTip(el);});
+document.addEventListener("mouseout",e=>{const el=e.target.closest("[data-tip],[data-age]");if(el&&!el.contains(e.relatedTarget))hideTip();});
+document.addEventListener("focusin",e=>{const el=e.target.closest("[data-tip],[data-age]");if(el)showTip(el);});
 document.addEventListener("focusout",hideTip);
-document.addEventListener("click",e=>{const el=e.target.closest("[data-tip]");if(el&&!el.dataset.sel){if(tipFor!==el)showTip(el);}else if(!el)hideTip();});
+document.addEventListener("click",e=>{const el=e.target.closest("[data-tip],[data-age]");if(el&&(el.dataset.age||!el.dataset.sel)){if(el.dataset.age)e.stopPropagation();if(tipFor!==el)showTip(el);}else if(!el)hideTip();});
 window.addEventListener("scroll",hideTip,{passive:true});
 
 /* ================= motion + experience ================= */
@@ -1330,7 +1402,7 @@ function cineShow(i){
   const m=MM[ci],g=GG.find(q=>q.id===m.g),gi=GG.indexOf(g),num=Math.round(Y[m.id]);
   $("#cine-stage").innerHTML=`<span class="label cine-part">${U.part} ${gi+1} · ${g.title}</span>
     <div class="cine-yr"><span dir="ltr" id="cine-y">${cPrev}</span><small>${U.bc}</small></div>
-    <div class="cine-chip">${chip(m)}<span class="date">${m.date}</span></div>
+    <div class="cine-chip">${chip(m)}<span class="date">${m.date}</span>${ageChip(m)}</div>
     <h2 class="cine-t">${m.title.split(" ").map((w,k)=>`<span class="w"><span style="--i:${k}">${esc(w)}</span></span>`).join(" ")}</h2>
     <p class="cine-h">${esc(m.hook)}</p>
     <button class="play cine-open" id="cine-open">${U.openThis}</button>`;
